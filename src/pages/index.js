@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Guild from "../components/Guild";
 import Member from "../components/Member";
+import Relic from "../components/Relic";
 import RvrEvent from "../components/RvrEvent";
 import RvrKeep from "../components/RvrKeep";
 
@@ -22,7 +23,10 @@ const IndexPage = () => {
   const [members, setMembers] = useState([]);
   const [guild, setGuild] = useState();
   const [rvrEvents, setRvrEvents] = useState([]);
-  const [rvrKeeps, setRvrKeeps] = useState([]);
+  const [rvrKeepHibernia, setRvrKeepHibernia] = useState([]);
+  const [rvrKeepAlbion, setRvrKeepAlbion] = useState([]);
+  const [rvrKeepMidgard, setRvrKeepMidgard] = useState([]);
+  const [relics, setRelics] = useState([]);
   const [topRp, setTopRp] = useState([]);
   useEffect(() => {
     fetch("https://api.atlasfreeshard.com/guild/FrogZ/members")
@@ -39,10 +43,20 @@ const IndexPage = () => {
 
     fetch("https://api.atlasfreeshard.com/realm/hibernia")
       .then((response) => response.json())
-      .then((resData) => setRvrKeeps(resData));
+      .then((resData) => setRvrKeepHibernia(resData));
+    fetch("https://api.atlasfreeshard.com/realm/albion")
+      .then((response) => response.json())
+      .then((resData) => setRvrKeepAlbion(resData));
+    fetch("https://api.atlasfreeshard.com/realm/midgard")
+      .then((response) => response.json())
+      .then((resData) => setRvrKeepMidgard(resData));
+
     fetch("https://api.atlasfreeshard.com/stats/rp")
       .then((response) => response.json())
       .then((resData) => setTopRp(resData));
+    fetch("https://api.atlasfreeshard.com/relic")
+      .then((response) => response.json())
+      .then((resData) => setRelics(resData));
   }, []);
   return (
     <main style={pageStyles}>
@@ -85,7 +99,18 @@ const IndexPage = () => {
         </div>
         <div>
           <p>
-            {rvrKeeps.map((rvr) => (
+            <i>RELICS</i>
+            {relics.map((relic) => (
+              <Relic
+                name={relic.name}
+                currentRealm={relic.currentRealm}
+                type={relic.type}
+              />
+            ))}
+          </p>
+          <p>
+            <i>KEEPS</i>
+            {rvrKeepHibernia.map((rvr) => (
               <RvrKeep
                 name={rvr.name}
                 realm={rvr.currentRealm}
@@ -96,12 +121,35 @@ const IndexPage = () => {
             ))}
           </p>
           <p>
+            {rvrKeepMidgard.map((rvr) => (
+              <RvrKeep
+                name={rvr.name}
+                realm={rvr.currentRealm}
+                claim={rvr.claimingGuild}
+                level={rvr.level}
+                underSiege={rvr.underSiege}
+              />
+            ))}
+          </p>
+          <p>
+            {rvrKeepAlbion.map((rvr) => (
+              <RvrKeep
+                name={rvr.name}
+                realm={rvr.currentRealm}
+                claim={rvr.claimingGuild}
+                level={rvr.level}
+                underSiege={rvr.underSiege}
+              />
+            ))}
+          </p>
+          <p>
+            <i>RVR EVENTS</i>
             {rvrEvents.map((rvr) => (
               <RvrEvent info={rvr.text} date={rvr.date} />
             ))}
           </p>
           <p style={topStyles}>
-            <b>TOP 10 Players</b>
+            <i>TOP 10</i>
             {topRp.map((member) => {
               const deathsBlows =
                 member.killsAlbionDeathBlows +
