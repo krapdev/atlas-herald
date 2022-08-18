@@ -14,11 +14,16 @@ const contentStyles = {
   justifyContent: "center",
 };
 
+const topStyles = {
+  fontSize: "0.8em",
+};
+
 const IndexPage = () => {
   const [members, setMembers] = useState([]);
   const [guild, setGuild] = useState();
   const [rvrEvents, setRvrEvents] = useState([]);
   const [rvrKeeps, setRvrKeeps] = useState([]);
+  const [topRp, setTopRp] = useState([]);
   useEffect(() => {
     fetch("https://api.atlasfreeshard.com/guild/FrogZ/members")
       .then((response) => response.json())
@@ -35,6 +40,9 @@ const IndexPage = () => {
     fetch("https://api.atlasfreeshard.com/realm/hibernia")
       .then((response) => response.json())
       .then((resData) => setRvrKeeps(resData));
+    fetch("https://api.atlasfreeshard.com/stats/rp")
+      .then((response) => response.json())
+      .then((resData) => setTopRp(resData));
   }, []);
   return (
     <main style={pageStyles}>
@@ -90,6 +98,32 @@ const IndexPage = () => {
             {rvrEvents.map((rvr) => (
               <RvrEvent info={rvr.text} date={rvr.date} />
             ))}
+          </p>
+          <p style={topStyles}>
+            <b>TOP 10 Players</b>
+            {topRp.map((member) => {
+              const deathsBlows =
+                member.killsAlbionDeathBlows +
+                member.killsHiberniaDeathBlows +
+                member.killsMidgardDeathBlows;
+              const kills =
+                member.killsAlbionPlayers +
+                member.killsHiberniaPlayers +
+                member.killsMidgardPlayers;
+              return (
+                <Member
+                  name={member.name}
+                  typeClass={member.class}
+                  realmRank={member.realmRank}
+                  lastName={member.lastname}
+                  race={member.race}
+                  level={member.level}
+                  nbDeaths={member.pvpDeaths}
+                  nbDeathsBlows={deathsBlows}
+                  nbKills={kills}
+                />
+              );
+            })}
           </p>
         </div>
       </div>
