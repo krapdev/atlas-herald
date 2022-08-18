@@ -1,0 +1,27 @@
+{
+  "name": "frog-z-atlas-herald",
+  "version": "1.0.0",
+  "private": true,
+  "description": "frog-z-atlas-herald",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^4.21.0",
+    "gatsby-plugin-image": "^2.21.0",
+    "gatsby-plugin-manifest": "^4.21.0",
+    "gatsby-plugin-sharp": "^4.21.0",
+    "gatsby-plugin-sitemap": "^5.21.0",
+    "gatsby-source-filesystem": "^4.21.0",
+    "gatsby-transformer-sharp": "^4.21.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
