@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
+import Guild from "../components/Guild";
 import Member from "../components/Member";
 
 const pageStyles = {
   color: "#232129",
-  padding: 96,
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
 };
 
 const IndexPage = () => {
   const [members, setMembers] = useState([]);
+  const [guild, setGuild] = useState();
   useEffect(() => {
     fetch("https://api.atlasfreeshard.com/guild/FrogZ/members")
       .then((response) => response.json())
       .then((resData) => setMembers(resData));
+
+    fetch("https://api.atlasfreeshard.com/guild/FrogZ")
+      .then((response) => response.json())
+      .then((resData) => setGuild(resData));
   }, []);
   return (
     <main style={pageStyles}>
+      <Guild
+        name={guild?.name}
+        realm={guild?.realm}
+        nbMembers={guild?.members}
+        realmPoints={guild?.realmPoints}
+      />
       {members
         .sort((curr, next) => {
           console.log(curr.realmPoints, next.realmPoints);
