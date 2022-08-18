@@ -78,6 +78,7 @@ const IndexPage = () => {
                   nbDeaths={member.pvpDeaths}
                   nbDeathsBlows={deathsBlows}
                   nbKills={kills}
+                  realmPoints={member.realmPoints}
                 />
               );
             })}
@@ -121,6 +122,7 @@ const IndexPage = () => {
                   nbDeaths={member.pvpDeaths}
                   nbDeathsBlows={deathsBlows}
                   nbKills={kills}
+                  realmPoints={member.realmPoints}
                 />
               );
             })}

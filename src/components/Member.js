@@ -17,6 +17,7 @@ const Member = ({
   nbDeaths,
   nbDeathsBlows,
   nbKills,
+  realmPoints,
 }) => {
   return (
     <p className={container}>
@@ -31,7 +32,7 @@ const Member = ({
         </div>
       </div>
       <div className={memberStat}>
-        {typeClass} {race} {level}
+        {typeClass} {race} {level} {realmPoints}
       </div>
     </p>
   );
