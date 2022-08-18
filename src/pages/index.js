@@ -105,6 +105,7 @@ const IndexPage = () => {
                 name={relic.name}
                 currentRealm={relic.currentRealm}
                 type={relic.type}
+                originalRealm={relic.originalRealm}
               />
             ))}
           </p>

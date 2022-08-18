@@ -1,12 +1,20 @@
 import React from "react";
 import { container } from "./Relic.module.css";
 
-const Relic = ({ name, currentRealm, type }) => {
+const getColor = (realm) => {
+  if (realm === "Hibernia") return "green";
+  if (realm === "Albion") return "red";
+  if (realm === "Midgard") return "blue";
+  return "black";
+};
+
+const Relic = ({ name, currentRealm, originalRealm, type }) => {
   return (
     <div className={container}>
-      <span>
-        <b>{name}</b> {currentRealm} {type}
+      <span style={{ color: getColor(currentRealm), marginRight: ".2em" }}>
+        <b>{name}</b>
       </span>
+      {originalRealm} {type}
     </div>
   );
 };
