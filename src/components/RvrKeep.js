@@ -14,7 +14,13 @@ const RvrKeep = ({ name, realm, claim, level, underSiege }) => {
       <span style={{ color: getColor(realm), marginRight: ".2em" }}>
         <b>{name}</b>
       </span>
-      {claim} level: {level} underSiege: {underSiege}
+      {claim} level: {level}
+      {underSiege && (
+        <span style={{ marginLeft: ".2em" }}>
+          {" "}
+          <b>Under Siege</b>
+        </span>
+      )}
     </div>
   );
 };
