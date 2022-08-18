@@ -15,9 +15,8 @@ const RvrKeep = ({ name, realm, claim, level, underSiege }) => {
         <b>{name}</b>
       </span>
       {claim} level: {level}
-      {underSiege && (
+      {underSiege > 0 && (
         <span style={{ marginLeft: ".2em" }}>
-          {" "}
           <b>Under Siege</b>
         </span>
       )}
