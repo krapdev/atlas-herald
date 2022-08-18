@@ -1,13 +1,38 @@
 import React from "react";
-import { container, memberName } from "./Member.module.css";
+import {
+  container,
+  memberName,
+  memberStat,
+  pvpStat,
+  containerLine,
+} from "./Member.module.css";
 
-const Member = ({ name, typeClass, realmRank, lastName, race, level }) => {
+const Member = ({
+  name,
+  typeClass,
+  realmRank,
+  lastName,
+  race,
+  level,
+  nbDeaths,
+  nbDeathsBlows,
+  nbKills,
+}) => {
   return (
     <p className={container}>
-      <div className={memberName}>
-        {name} {lastName} {realmRank}
+      <div className={containerLine}>
+        <span className={memberName}>
+          {name} {lastName} {realmRank}
+        </span>
+        <div className={pvpStat}>
+          <span>
+            deathblows {nbDeathsBlows} kills {nbKills} deaths {nbDeaths}
+          </span>
+        </div>
       </div>
-      {typeClass} {race} {level}
+      <div className={memberStat}>
+        {typeClass} {race} {level}
+      </div>
     </p>
   );
 };

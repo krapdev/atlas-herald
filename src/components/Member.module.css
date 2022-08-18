@@ -6,3 +6,22 @@
     font-weight: bold;
 
 }
+.deaths {
+
+}
+.pvpStat {
+    display: flex;
+    align-items: center;
+    font-size: .8em ;
+    margin: 0 1em;
+}
+
+.memberStat {
+    display: flex;
+    align-items: center;
+    font-size: .8em ;
+
+}
+.containerLine {
+    display: flex;
+}

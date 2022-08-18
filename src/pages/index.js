@@ -21,16 +21,29 @@ const IndexPage = () => {
           console.log(curr.realmPoints, next.realmPoints);
           return next.realmPoints - curr.realmPoints;
         })
-        .map((member) => (
-          <Member
-            name={member.name}
-            typeClass={member.class}
-            realmRank={member.realmRank}
-            lastName={member.lastname}
-            race={member.race}
-            level={member.level}
-          />
-        ))}
+        .map((member) => {
+          const deathsBlows =
+            member.killsAlbionDeathBlows +
+            member.killsHiberniaDeathBlows +
+            member.killsMidgardDeathBlows;
+          const kills =
+            member.killsAlbionPlayers +
+            member.killsHiberniaPlayers +
+            member.killsMidgardPlayers;
+          return (
+            <Member
+              name={member.name}
+              typeClass={member.class}
+              realmRank={member.realmRank}
+              lastName={member.lastname}
+              race={member.race}
+              level={member.level}
+              nbDeaths={member.pvpDeaths}
+              nbDeathsBlows={deathsBlows}
+              nbKills={kills}
+            />
+          );
+        })}
     </main>
   );
 };
